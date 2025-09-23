@@ -10,8 +10,7 @@ namespace PruebaGIT
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("He creado este proyecto!");
-            Console.WriteLine("He creado este proyecto!");
+            Console.WriteLine("mumca estes con un piscis");
 
         }
     }
