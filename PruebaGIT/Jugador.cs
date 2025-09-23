@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace PruebaGIT
 {
-    internal class Program
+    internal class Jugador
     {
-        static void Main(string[] args)
-        {
-            
-        }
     }
 }
