@@ -17,21 +17,28 @@ namespace PruebaGIT
             get { return jugadores; }
         }
 
-        public Equipo()
+        // Constructor que inicializa la lista y el nombre
+        public Equipo(string nombre)
         {
-            
+            this.nombre = nombre;
+            this.jugadores = new List<Jugador>();
+        }
+
+        // Método para añadir un jugador
+        public void AgregarJugador(Jugador jugador)
+        {
+            if (jugador == null) throw new ArgumentNullException(nameof(jugador));
+            jugadores.Add(jugador);
         }
 
         public override string ToString()
         {
-            string resultado = "=== BARAJA ===\n";
+            string resultado = $"El equipo {nombre} tiene {jugadores.Count} jugadores:\n";
 
-            foreach (var carta in Cartas)
+            foreach (var jugador in jugadores)
             {
-                resultado += carta + "\n";
+                resultado += jugador + "\n";
             }
-
-            resultado += "Total cartas: " + Cartas.Count;
             return resultado;
         }
     }
