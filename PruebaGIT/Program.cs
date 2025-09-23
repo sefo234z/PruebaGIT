@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace PruebaGIT
 {
+    //Listar equipos
+    //Crear Equipos
+    //Listas jugadores x equipos
+    //Menu Opciones equipos
     internal class Program
     {
         static void Main(string[] args)
+        {
+            DatosDePrueba();
+        }
+    
+
+        public static void DatosDePrueba()
         {
             // Crear algunos jugadores
             Jugador j1 = new Jugador(ePosicion.POR, "Iker Casillas", 1);
@@ -27,10 +37,9 @@ namespace PruebaGIT
 
             // Mostrar información
             Console.WriteLine(espana.ToString());
-
-            // Mantener la consola abierta si ejecutas desde Visual Studio diretamente
-            Console.WriteLine("\nPulsa Enter para salir...");
             Console.ReadLine();
+
         }
+
     }
 }
