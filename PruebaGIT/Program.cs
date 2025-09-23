@@ -10,7 +10,7 @@ namespace PruebaGIT
     {
         static void Main(string[] args)
         {
-            
+
         }
     }
 }
