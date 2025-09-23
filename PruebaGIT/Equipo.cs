@@ -22,7 +22,7 @@ namespace PruebaGIT
             
         }
 
-       /* public override string ToString()
+        public override string ToString()
         {
             string resultado = "=== BARAJA ===\n";
 
@@ -33,6 +33,6 @@ namespace PruebaGIT
 
             resultado += "Total cartas: " + Cartas.Count;
             return resultado;
-        }*/
+        }
     }
 }
