@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,22 +22,51 @@ namespace PruebaGIT
         public static void DatosDePrueba()
         {
             // Crear algunos jugadores
-            Jugador j1 = new Jugador(ePosicion.POR, "Iker Casillas", 1);
-            Jugador j2 = new Jugador(ePosicion.DEF, "Carles Puyol", 5);
-            Jugador j3 = new Jugador(ePosicion.CEN, "Xavi Hernández", 6);
-            Jugador j4 = new Jugador(ePosicion.DEL, "David Villa", 7);
-
+            Jugador ab = new Jugador(ePosicion.POR, "Unai Simon", 1);
+            Jugador ab1 = new Jugador(ePosicion.DEF, "Adama Boiro", 19);
+            Jugador ab2 = new Jugador(ePosicion.CEN, "Unai Gomez", 20);
+            Jugador ab3 = new Jugador(ePosicion.DEL, "Iñaki Williams", 9);
+            Jugador fcb = new Jugador(ePosicion.DEL, "Lamine Yamal", 10);
+            Jugador fcb1 = new Jugador(ePosicion.CEN, "Pedri", 8);
+            Jugador fcb2 = new Jugador(ePosicion.DEF, "Ronald Araujo", 4);
+            Jugador fcb3 = new Jugador(ePosicion.DEF, "Eric Garcia", 24);
+            Jugador rm = new Jugador(ePosicion.DEL, "Kylian Mbappe", 10);
+            Jugador rm1 = new Jugador(ePosicion.DEL, "Vinicius junior", 7);
+            Jugador rm2 = new Jugador(ePosicion.CEN, "Federico Valverde", 8);
+            Jugador rm3 = new Jugador(ePosicion.DEF, "Dani Carvajal", 2);
+            Jugador am = new Jugador(ePosicion.POR, "Jan Oblak", 13);
+            Jugador am1 = new Jugador(ePosicion.DEF, "Laurent Lenglet", 15);
+            Jugador am2 = new Jugador(ePosicion.CEN, "Marcos Llorente", 14);
+            Jugador am3 = new Jugador(ePosicion.DEL, "Antoine Griezmann", 7);
             // Crear un equipo
-            Equipo espana = new Equipo("España");
+            Equipo AtleticoBilbao = new Equipo("Atletico de Bilbao");
+            Equipo Barcelona = new Equipo("Barcelona");
+            Equipo RealMadrid = new Equipo("Real Madrid");
+            Equipo AtleticoMadrid  = new Equipo("Atletico de Madrid");
+
 
             // Agregar jugadores
-            espana.AgregarJugador(j1);
-            espana.AgregarJugador(j2);
-            espana.AgregarJugador(j3);
-            espana.AgregarJugador(j4);
-
+            AtleticoBilbao.AgregarJugador(ab);
+            AtleticoBilbao.AgregarJugador(ab1);
+            AtleticoBilbao.AgregarJugador(ab2);
+            AtleticoBilbao.AgregarJugador(ab3);
+            //ff
+            AtleticoMadrid.AgregarJugador(am);
+            AtleticoMadrid.AgregarJugador(am1);
+            AtleticoMadrid.AgregarJugador(am2);
+            AtleticoMadrid.AgregarJugador(am3);
+            //ff
+            Barcelona.AgregarJugador(fcb);
+            Barcelona.AgregarJugador(fcb1);
+            Barcelona.AgregarJugador(fcb2);
+            Barcelona.AgregarJugador(fcb3);
+            //ff
+            RealMadrid.AgregarJugador(rm);
+            RealMadrid.AgregarJugador(rm1);
+            RealMadrid.AgregarJugador(rm2);
+            RealMadrid.AgregarJugador(rm3);
             // Mostrar información
-            Console.WriteLine(espana.ToString());
+            Console.WriteLine(AtleticoBilbao.ToString());
             Console.ReadLine();
 
         }
