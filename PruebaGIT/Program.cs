@@ -10,7 +10,7 @@ namespace PruebaGIT
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("mumca estes con un piscis");
+            Console.WriteLine("comprobar cambios");
 
         }
     }
