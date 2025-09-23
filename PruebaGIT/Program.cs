@@ -10,14 +10,69 @@ namespace PruebaGIT
     //Listar equipos
     //Crear Equipos
     //Listas jugadores x equipos
-    //Menu Opciones equipos
     internal class Program
     {
         static void Main(string[] args)
         {
             DatosDePrueba();
+            MenuOpciones();
+
         }
-    
+
+
+        public static void MenuOpciones()
+        {
+            int opcionMenu = 0;
+
+            do
+            {
+                Console.WriteLine("---------------GESTION DE LA LIGA 25/26----------------");
+                Console.WriteLine("1-Mostrar equipos de la Liga.");
+                Console.WriteLine("2-Mostrar jugadores de un equipo.");
+                Console.WriteLine("3-Inscribir un nuevo equipo.");
+                Console.WriteLine("4-Fichar un jugador.");
+                Console.WriteLine("5-Salir.");
+
+                Console.Write("Opcion(1-5): ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out opcionMenu))
+                {
+                    switch (opcionMenu)
+                    {
+                        case 1:
+                            Console.WriteLine("-LISTADOS DE TODOS LOS EQUIPOS DE LA LIGA-");
+                            break;
+                        case 2:
+                            Console.Write("¿De qué equipo quieres ver los jugadores?: ");
+                            break;
+                        case 3:
+                            Console.WriteLine("-FORMULARIO DE INSCRIPCION DE UN EQUIPO-");
+                            break;
+                        case 4:
+                            Console.Write("¿Qué equipo quiere fichar un jugador?: ");
+                            break;
+                        case 5:
+                            Console.WriteLine("Has decidido salir, adiós!");
+                            Console.ReadKey();
+                            break;
+                        default:
+                            Console.WriteLine("No has seleccionado un número entre 1-5");
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Por favor introduce un número válido.");
+                }
+
+                Console.WriteLine(); // Línea en blanco para separar iteraciones del menú
+            } while (opcionMenu != 5); // Repetir hasta que el usuario seleccione 5
+        }
+
+
+
+
 
         public static void DatosDePrueba()
         {
@@ -66,8 +121,8 @@ namespace PruebaGIT
             RealMadrid.AgregarJugador(rm2);
             RealMadrid.AgregarJugador(rm3);
             // Mostrar información
-            Console.WriteLine(AtleticoBilbao.ToString());
-            Console.ReadLine();
+            //Console.WriteLine(AtleticoBilbao.ToString());
+            //Console.ReadLine();
 
         }
 

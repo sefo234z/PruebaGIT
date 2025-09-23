@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Equipo.cs" />
-    <Compile Include="GestionLiga.cs" />
+    <Compile Include="Liga.cs" />
     <Compile Include="Jugador.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
