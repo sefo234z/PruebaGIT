@@ -10,21 +10,24 @@ namespace PruebaGIT
     public class Equipo
     {
         private List<Jugador> jugadores;
-        private string nombre;
+        private string nombreClub;
+
+        public string NombreClub
+        {
+            get { return nombreClub; }
+            set { nombreClub = value; }
+        }
 
         public List<Jugador> Jugadores
         {
             get { return jugadores; }
         }
 
-        // Constructor que inicializa la lista y el nombre
-        public Equipo(string nombre)
+        public Equipo(string nombreClub)
         {
-            this.nombre = nombre;
+            this.nombreClub = nombreClub;
             this.jugadores = new List<Jugador>();
         }
-
-        // Método para añadir un jugador
         public void AgregarJugador(Jugador jugador)
         {
             if (jugador == null) throw new ArgumentNullException(nameof(jugador));
@@ -33,13 +36,7 @@ namespace PruebaGIT
 
         public override string ToString()
         {
-            string resultado = $"El equipo {nombre} tiene {jugadores.Count} jugadores:\n";
-
-            foreach (var jugador in jugadores)
-            {
-                resultado += jugador + "\n";
-            }
-            return resultado;
+            return $"El equipo {nombreClub.ToUpper()} tiene {jugadores.Count} jugadores en plantilla\n";
         }
     }
 }

@@ -18,6 +18,7 @@ namespace PruebaGIT
             private String nombre;
             private ePosicion posicion;
             private int dorsal;
+            private string nombreEquipo;
 
         public ePosicion Posicion
         {
@@ -31,6 +32,12 @@ namespace PruebaGIT
             set { nombre = value; }
         }
 
+        public string NombreEquipo
+        {
+            get { return nombreEquipo; }
+            set { nombreEquipo = value; }
+        }
+
         public int Dorsal
         {
             get { return dorsal; }
@@ -41,15 +48,17 @@ namespace PruebaGIT
 
         }
 
-        public Jugador(ePosicion posicion,string nombre ,int dorsal)
+        public Jugador(ePosicion posicion,string nombre ,int dorsal, string equipo)
         {
              this.posicion = posicion;
              this.nombre = nombre;
              this.dorsal = dorsal;
+             this.nombreEquipo = equipo;
+             
         }
         public override string ToString()
         {
-             return $"{nombre} con dorsal {dorsal} juega en la posicion {posicion}";
+             return $"{nombre} con dorsal {dorsal} juega en la posicion {posicion} y en el equipo {nombreEquipo}. ";
         }
         }
     }
