@@ -66,6 +66,7 @@ namespace PruebaGIT
                 Equipo e = new Equipo(nombre);
                 liga.Add(e);
                 Console.WriteLine("El equipo '" + e.NombreClub + "' ha sido inscrito correctamente");
+                GuardarDatosEnArchivo();
             }
         }
 
@@ -96,6 +97,7 @@ namespace PruebaGIT
 
             equipoEncontrado.Jugadores.Add(jugador);
             Console.WriteLine($"Jugador '{jugador.Nombre}' añadido correctamente al equipo '{jugador.NombreEquipo}'.");
+            GuardarDatosEnArchivo();
         }
 
         // 5-Modificar un jugador
@@ -150,11 +152,13 @@ namespace PruebaGIT
                         nuevoEquipo.Jugadores.Add(nuevoJugador);
 
                         Console.WriteLine($"Jugador movido exitosamente de '{equipoOriginal}' a '{nuevoJugador.NombreEquipo}'");
+                        GuardarDatosEnArchivo();
                     }
                     else
                     {
                         Console.WriteLine($"Error: El equipo '{nuevoJugador.NombreEquipo}' no existe en la liga.");
                         Console.WriteLine("El jugador se mantendrá en su equipo original con los nuevos datos.");
+                        GuardarDatosEnArchivo();
 
                         int indice = equipoEncontrado.Jugadores.IndexOf(jugadorAModificar);
                         if (indice != -1)
@@ -235,6 +239,29 @@ namespace PruebaGIT
                 Console.WriteLine($"Error al cargar el archivo: {ex.Message}");
             }
         }
+        public void GuardarDatosEnArchivo()
+        {
+            string nombreArchivo = "datos_liga.txt";
+
+            string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), nombreArchivo);
+
+            var lineas = new List<string>
+    {
+        "# Formato: Posicion|Nombre|Dorsal|Equipo",
+        ""
+    };
+
+            foreach (Equipo equipo in liga)
+            {
+                foreach (Jugador jugador in equipo.Jugadores)
+                {
+                    lineas.Add($"{jugador.Posicion}|{jugador.Nombre}|{jugador.Dorsal}|{equipo.NombreClub}");
+                }
+                lineas.Add("");
+            }
+
+            File.WriteAllLines(rutaArchivo, lineas);
+            Console.WriteLine($"✓ Datos guardados: {Path.GetFileName(rutaArchivo)}");
+        }
     }
 }
-
