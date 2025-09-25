@@ -7,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace PruebaGIT
 {
-    //Listar equipos
-    //Crear Equipos
-    //Listas jugadores x equipos
     internal class Program
     {
         static Liga liga = new Liga();
-        
+
         static void Main(string[] args)
         {
             liga.DatosDePrueba();
             MenuOpciones();
         }
-
-
-          public static void MenuOpciones()
+        public static void MenuOpciones()
         {
             int opcionMenu = 0;
 
@@ -32,9 +27,11 @@ namespace PruebaGIT
                 Console.WriteLine("2-Mostrar jugadores de un equipo.");
                 Console.WriteLine("3-Inscribir un nuevo equipo.");
                 Console.WriteLine("4-Fichar un jugador.");
-                Console.WriteLine("5-Salir.");
+                Console.WriteLine("5-Modificar un jugador.");
 
-                Console.Write("Opcion(1-5): ");
+                Console.WriteLine("6-Salir.");
+
+                Console.Write("Opcion(1-6): ");
                 string input = Console.ReadLine();
 
                 if (int.TryParse(input, out opcionMenu))
@@ -46,18 +43,24 @@ namespace PruebaGIT
                             liga.MostrarNombresEquipos();
                             break;
                         case 2:
-                            Console.Write("¿De qué equipo quieres ver los jugadores?: ");
-                            liga.MostrarJugadoresDeEquipo();
+                            Console.WriteLine("-MOSTRAR PLANTILLA-");
+                            Console.Write("Introduce el nombre del equipo: ");
+                            string nombreEquipo = Console.ReadLine();
+                            liga.MostrarJugadoresDeEquipo(nombreEquipo);
                             break;
                         case 3:
-                            Console.WriteLine("---INSCRIPCION DE UN EQUIPO---");
+                            Console.WriteLine("-INSCRIPCION DE UN EQUIPO-");
                             liga.CrearEquipo();
                             break;
                         case 4:
-                            Console.Write("¿Qué equipo quiere fichar un jugador?: ");
+                            Console.Write("-NUEVO FICHAJE-");
                             liga.CrearJugador();
                             break;
                         case 5:
+                            Console.Write("-MODIFICACION DE UN EQUIPO-");
+                            liga.ModificarJugador();
+                            break;
+                        case 6:
                             Console.WriteLine("Has decidido salir, adiós!");
                             Console.ReadKey();
                             break;
@@ -71,8 +74,8 @@ namespace PruebaGIT
                     Console.WriteLine("Por favor introduce un número válido.");
                 }
 
-                Console.WriteLine(); // Línea en blanco para separar iteraciones del menú
-            } while (opcionMenu != 5); // Repetir hasta que el usuario seleccione 5
+                Console.WriteLine();
+            } while (opcionMenu != 6);
         }
 
     }
