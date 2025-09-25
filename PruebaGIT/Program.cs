@@ -8,6 +8,7 @@ namespace PruebaGIT
 
         static void Main(string[] args)
         {
+            liga.CargarDatosDesdeArchivo();
             MenuOpciones();
         }
 

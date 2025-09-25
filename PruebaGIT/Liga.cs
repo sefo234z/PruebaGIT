@@ -185,6 +185,56 @@ namespace PruebaGIT
                 Console.WriteLine("Ese jugador no existe en el equipo " + nombreEquipo);
             }
         }
+        //Gestion Fichero
+        public void CargarDatosDesdeArchivo()
+        {
+            try
+            {
+                string nombreArchivo = "datos_liga.txt";
+                string rutaArchivo = Path.Combine(Directory.GetCurrentDirectory(), nombreArchivo);
+
+                if (!File.Exists(rutaArchivo))
+                {
+                    Console.WriteLine($"Archivo no encontrado: {rutaArchivo}");
+                    return;
+                }
+
+                // Inicializar liga si es null
+                if (liga == null) liga = new List<Equipo>();
+
+                string[] lineas = File.ReadAllLines(rutaArchivo);
+                Dictionary<string, Equipo> equiposDict = new Dictionary<string, Equipo>();
+
+                foreach (string linea in lineas)
+                {
+                    if (string.IsNullOrWhiteSpace(linea) || linea.StartsWith("#")) continue;
+
+                    string[] partes = linea.Split('|');
+                    if (partes.Length < 4) continue;
+
+                    ePosicion posicion = (ePosicion)Enum.Parse(typeof(ePosicion), partes[0].Trim());
+                    string nombre = partes[1].Trim();
+                    int dorsal = int.Parse(partes[2].Trim());
+                    string equipoNombre = partes[3].Trim();
+
+                    if (!equiposDict.ContainsKey(equipoNombre))
+                    {
+                        Equipo nuevoEquipo = new Equipo(equipoNombre);
+                        equiposDict[equipoNombre] = nuevoEquipo;
+                        liga.Add(nuevoEquipo);
+                    }
+
+                    Jugador jugador = new Jugador(posicion, nombre, dorsal, equipoNombre);
+                    equiposDict[equipoNombre].Jugadores.Add(jugador);
+                }
+
+                Console.WriteLine($"Datos cargados: {equiposDict.Count} equipos, {liga.Sum(e => e.Jugadores.Count)} jugadores");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al cargar el archivo: {ex.Message}");
+            }
+        }
     }
 }
 
