@@ -12,27 +12,24 @@ namespace PruebaGIT
 
     public class Jugador
     {
-        private string nombre;
-        private ePosicion posicion;
-        private int dorsal;
-        private string nombreEquipo;
-
         public ePosicion Posicion { get; set; }
         public string Nombre { get; set; }
-        public string NombreEquipo { get; set; }
         public int Dorsal { get; set; }
+        public string NombreEquipo { get; set; }
+
+        public Jugador(ePosicion posicion, string nombre, int dorsal, string equipo)
+        {
+            Posicion = posicion;
+            Nombre = nombre;
+            Dorsal = dorsal;
+            NombreEquipo = equipo;
+        }
 
         public Jugador()
         {
         }
 
-        public Jugador(ePosicion posicion, string nombre, int dorsal, string equipo)
-        {
-            this.posicion = posicion;
-            this.nombre = nombre;
-            this.dorsal = dorsal;
-            this.nombreEquipo = equipo;
-        }
+       
 
         public static Jugador FormularioNuevoJugador()
         {
@@ -99,7 +96,7 @@ namespace PruebaGIT
 
         public override string ToString()
         {
-            return $"{nombre} con dorsal {dorsal} juega en la posicion {posicion} y en el equipo {nombreEquipo}.";
+            return $"{Nombre} con dorsal {Dorsal} juega en la posicion {Posicion} y en el equipo {NombreEquipo}.";
         }
     }
 }

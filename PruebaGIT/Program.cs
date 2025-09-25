@@ -8,7 +8,6 @@ namespace PruebaGIT
 
         static void Main(string[] args)
         {
-            liga.DatosDePrueba();
             MenuOpciones();
         }
 

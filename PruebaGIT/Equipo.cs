@@ -5,22 +5,21 @@ namespace PruebaGIT
 {
     public class Equipo
     {
-        private List<Jugador> jugadores;
-        private string nombreClub;
+        
 
         public string NombreClub { get; set; }
         public List<Jugador> Jugadores { get; }
 
         public Equipo(string nombreClub)
         {
-            this.nombreClub = nombreClub;
-            this.jugadores = new List<Jugador>();
+            this.NombreClub = nombreClub;
+            Jugadores = new List<Jugador>();
         }
 
         public void AgregarJugador(Jugador jugador)
         {
             if (jugador == null) throw new ArgumentNullException(nameof(jugador));
-            jugadores.Add(jugador);
+            Jugadores.Add(jugador);
         }
 
         public static string FormularioNuevoEquipo()
@@ -41,7 +40,7 @@ namespace PruebaGIT
 
         public override string ToString()
         {
-            return $"El equipo {nombreClub.ToUpper()} tiene {jugadores.Count} jugadores en plantilla\n";
+            return $"El equipo {NombreClub.ToUpper()} tiene {Jugadores.Count} jugadores en plantilla\n";
         }
     }
 }
