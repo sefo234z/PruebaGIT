@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PruebaGIT
 {
@@ -14,38 +12,7 @@ namespace PruebaGIT
         {
         }
 
-        public void CrearEquipo()
-        {
-            string nombre = FormularioNuevoEquipo();
-            Equipo equipoEncontrado = liga
-                .FirstOrDefault(e => e.NombreClub.Equals(nombre, StringComparison.OrdinalIgnoreCase));
-            if (equipoEncontrado != null)
-            {
-                Console.WriteLine("No se ha podido inscribir, el equipo '" + nombre + "' ya juega en esta liga");
-            }
-            else
-            {
-                Equipo e = new Equipo(nombre);
-                liga.Add(e);
-                Console.WriteLine("El equipo '" + e.NombreClub + "' ha sido inscrito correctamente");
-            }
-        }
-        public String FormularioNuevoEquipo()
-        {
-            string nombre = " ";
-            do
-            {
-                Console.Write("Dime el nombre del equipo: ");
-                nombre = Console.ReadLine();
-                if (string.IsNullOrEmpty(nombre) || string.IsNullOrWhiteSpace(nombre))
-                {
-                    Console.WriteLine("Nombre no valido, vuelva a introducirlo");
-                }
-            } while (string.IsNullOrEmpty(nombre) || string.IsNullOrWhiteSpace(nombre));
-
-            return nombre;
-
-        }
+        // 1-Listar los equipos de la Liga.
         public void MostrarNombresEquipos()
         {
             foreach (var equipo in liga)
@@ -53,16 +20,16 @@ namespace PruebaGIT
                 Console.Write(equipo);
             }
         }
+
+        // 2-Listar los jugadores de un equipo.
         public void MostrarJugadoresDeEquipo(string nombreEquipo)
         {
-
             Equipo equipoEncontrado = liga.FirstOrDefault(e =>
                 e.NombreClub.Equals(nombreEquipo, StringComparison.OrdinalIgnoreCase));
 
             if (equipoEncontrado == null)
             {
                 Console.WriteLine($"El equipo '{nombreEquipo}' no existe.");
-
             }
             else
             {
@@ -80,12 +47,31 @@ namespace PruebaGIT
                     }
                 }
             }
-
-
         }
+
+        // 3-Crear un nuevo equipo.
+        public void CrearEquipo()
+        {
+            string nombre = Equipo.FormularioNuevoEquipo();
+            Equipo equipoEncontrado = liga
+                .FirstOrDefault(e => e.NombreClub.Equals(nombre, StringComparison.OrdinalIgnoreCase));
+
+            if (equipoEncontrado != null)
+            {
+                Console.WriteLine("No se ha podido inscribir, el equipo '" + nombre + "' ya juega en esta liga");
+            }
+            else
+            {
+                Equipo e = new Equipo(nombre);
+                liga.Add(e);
+                Console.WriteLine("El equipo '" + e.NombreClub + "' ha sido inscrito correctamente");
+            }
+        }
+
+        // 4-Crear un nuevo jugador.
         public void CrearJugador()
         {
-            Jugador jugador = FormularioNuevoJugador();
+            Jugador jugador = Jugador.FormularioNuevoJugador();
 
             Equipo equipoEncontrado = liga.FirstOrDefault(e =>
                 e.NombreClub.Equals(jugador.NombreEquipo, StringComparison.OrdinalIgnoreCase));
@@ -111,6 +97,7 @@ namespace PruebaGIT
             Console.WriteLine($"Jugador '{jugador.Nombre}' añadido correctamente al equipo '{jugador.NombreEquipo}'.");
         }
 
+        // 5-Modificar un jugador
         public void ModificarJugador()
         {
             Console.Write("Introduce el nombre del equipo: ");
@@ -138,8 +125,7 @@ namespace PruebaGIT
                 Console.WriteLine($"Modificando jugador: {jugadorAModificar.Nombre}");
 
                 string equipoOriginal = jugadorAModificar.NombreEquipo;
-
-                Jugador nuevoJugador = FormularioNuevoJugador();
+                Jugador nuevoJugador = Jugador.FormularioNuevoJugador();
 
                 if (!nuevoJugador.NombreEquipo.Equals(equipoOriginal, StringComparison.OrdinalIgnoreCase))
                 {
@@ -158,8 +144,8 @@ namespace PruebaGIT
                             Console.WriteLine($"Error: Ya existe un jugador con el nombre '{nuevoJugador.Nombre}.");
                             return;
                         }
-                        equipoEncontrado.Jugadores.Remove(jugadorAModificar);
 
+                        equipoEncontrado.Jugadores.Remove(jugadorAModificar);
                         nuevoEquipo.Jugadores.Add(nuevoJugador);
 
                         Console.WriteLine($"Jugador movido exitosamente de '{equipoOriginal}' a '{nuevoJugador.NombreEquipo}'");
@@ -188,6 +174,7 @@ namespace PruebaGIT
                     if (indice != -1)
                     {
                         equipoEncontrado.Jugadores[indice] = nuevoJugador;
+                        Console.WriteLine($"Jugador '{nombreJugador}' modificado exitosamente!");
                     }
                 }
             }
@@ -196,96 +183,42 @@ namespace PruebaGIT
                 Console.WriteLine("Ese jugador no existe en el equipo " + nombreEquipo);
             }
         }
-        public Jugador FormularioNuevoJugador()
-        {
-            string nombre;
-            int dorsal;
-            ePosicion posicion;
-            string equipo;
 
-            do
-            {
-                Console.Write("Dime el nombre completo del jugador: ");
-                nombre = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(nombre))
-                {
-                    Console.WriteLine("Error: El nombre no puede estar vacío.");
-                }
-            } while (string.IsNullOrWhiteSpace(nombre));
-
-            bool dorsalValido = false;
-            do
-            {
-                Console.Write("Dime el dorsal del jugador: ");
-                string dorsalInput = Console.ReadLine();
-
-                if (int.TryParse(dorsalInput, out dorsal) && dorsal > 0)
-                {
-                    dorsalValido = true;
-                }
-                else
-                {
-                    Console.WriteLine("Error: El dorsal debe ser un número entero positivo.");
-                }
-            } while (!dorsalValido);
-
-            bool posicionValida = false;
-            do
-            {
-                Console.Write("Dime la posición del jugador (POR, DEF, CEN, DEL): ");
-                string posicionInput = Console.ReadLine().ToUpper();
-
-                if (Enum.TryParse<ePosicion>(posicionInput, out posicion) &&
-                    Enum.IsDefined(typeof(ePosicion), posicion))
-                {
-                    posicionValida = true;
-                }
-                else
-                {
-                    Console.WriteLine("Error: Posición no válida. Usa POR, DEF, CEN o DEL.");
-                }
-            } while (!posicionValida);
-
-            do
-            {
-                Console.Write("Dime equipo: ");
-                equipo = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(equipo))
-                {
-                    Console.WriteLine("Error: El equipo no puede estar vacío.");
-                }
-            } while (string.IsNullOrWhiteSpace(equipo));
-
-            return new Jugador(posicion, nombre, dorsal, equipo);
-        }
+        // Resto de metodos
         public void DatosDePrueba()
         {
             Jugador ab = new Jugador(ePosicion.POR, "Unai Simon", 1, "Atletico de Bilbao");
             Jugador ab1 = new Jugador(ePosicion.DEF, "Adama Boiro", 19, "Atletico de Bilbao");
             Jugador ab2 = new Jugador(ePosicion.CEN, "Unai Gomez", 20, "Atletico de Bilbao");
             Jugador ab3 = new Jugador(ePosicion.DEL, "Iñaki Williams", 9, "Atletico de Bilbao");
+
             Jugador fcb = new Jugador(ePosicion.DEL, "Lamine Yamal", 10, "Barcelona");
             Jugador fcb1 = new Jugador(ePosicion.CEN, "Pedri", 8, "Barcelona");
             Jugador fcb2 = new Jugador(ePosicion.DEF, "Ronald Araujo", 4, "Barcelona");
             Jugador fcb3 = new Jugador(ePosicion.DEF, "Eric Garcia", 24, "Barcelona");
+
             Jugador rm = new Jugador(ePosicion.DEL, "Kylian Mbappe", 10, "Real Madrid");
             Jugador rm1 = new Jugador(ePosicion.DEL, "Vinicius junior", 7, "Real Madrid");
             Jugador rm2 = new Jugador(ePosicion.CEN, "Federico Valverde", 8, "Real Madrid");
             Jugador rm3 = new Jugador(ePosicion.DEF, "Dani Carvajal", 2, "Real Madrid");
+
             Jugador am = new Jugador(ePosicion.POR, "Jan Oblak", 13, "Atletico de Madrid");
             Jugador am1 = new Jugador(ePosicion.DEF, "Laurent Lenglet", 15, "Atletico de Madrid");
             Jugador am2 = new Jugador(ePosicion.CEN, "Marcos Llorente", 14, "Atletico de Madrid");
             Jugador am3 = new Jugador(ePosicion.DEL, "Antoine Griezmann", 7, "Atletico de Madrid");
-            // Crear un equipo
+
+            // Crear equipos
             Equipo AtleticoBilbao = new Equipo("Atletico de Bilbao");
             Equipo Barcelona = new Equipo("Barcelona");
             Equipo RealMadrid = new Equipo("Real Madrid");
             Equipo AtleticoMadrid = new Equipo("Atletico de Madrid");
+
             liga.Add(Barcelona);
             liga.Add(RealMadrid);
             liga.Add(AtleticoMadrid);
             liga.Add(AtleticoBilbao);
 
+            // Agregar jugadores a equipos
             AtleticoBilbao.AgregarJugador(ab);
             AtleticoBilbao.AgregarJugador(ab1);
             AtleticoBilbao.AgregarJugador(ab2);

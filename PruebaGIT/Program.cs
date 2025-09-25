@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PruebaGIT
 {
@@ -16,6 +11,7 @@ namespace PruebaGIT
             liga.DatosDePrueba();
             MenuOpciones();
         }
+
         public static void MenuOpciones()
         {
             int opcionMenu = 0;
@@ -28,9 +24,7 @@ namespace PruebaGIT
                 Console.WriteLine("3-Inscribir un nuevo equipo.");
                 Console.WriteLine("4-Fichar un jugador.");
                 Console.WriteLine("5-Modificar un jugador.");
-
                 Console.WriteLine("6-Salir.");
-
                 Console.Write("Opcion(1-6): ");
                 string input = Console.ReadLine();
 
@@ -53,11 +47,11 @@ namespace PruebaGIT
                             liga.CrearEquipo();
                             break;
                         case 4:
-                            Console.Write("-NUEVO FICHAJE-");
+                            Console.WriteLine("-NUEVO FICHAJE-");
                             liga.CrearJugador();
                             break;
                         case 5:
-                            Console.Write("-MODIFICACION DE UN EQUIPO-");
+                            Console.WriteLine("-MODIFICACION DE UN JUGADOR-");
                             liga.ModificarJugador();
                             break;
                         case 6:
@@ -65,7 +59,7 @@ namespace PruebaGIT
                             Console.ReadKey();
                             break;
                         default:
-                            Console.WriteLine("No has seleccionado un número entre 1-5");
+                            Console.WriteLine("No has seleccionado un número entre 1-6");
                             break;
                     }
                 }
@@ -73,10 +67,8 @@ namespace PruebaGIT
                 {
                     Console.WriteLine("Por favor introduce un número válido.");
                 }
-
                 Console.WriteLine();
             } while (opcionMenu != 6);
         }
-
     }
 }
