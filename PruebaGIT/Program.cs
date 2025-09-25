@@ -10,13 +10,13 @@ namespace PruebaGIT
     internal class Program
     {
         static Liga liga = new Liga();
-        
+
         static void Main(string[] args)
         {
             liga.DatosDePrueba();
             MenuOpciones();
         }
-          public static void MenuOpciones()
+        public static void MenuOpciones()
         {
             int opcionMenu = 0;
 

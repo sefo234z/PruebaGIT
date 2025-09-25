@@ -9,35 +9,35 @@ namespace PruebaGIT
     internal class Liga
     {
         List<Equipo> liga = new List<Equipo>();
-    
-    public Liga()
-    {
-    }
 
-    public void CrearEquipo()
+        public Liga()
+        {
+        }
+
+        public void CrearEquipo()
         {
             string nombre = FormularioNuevoEquipo();
             Equipo equipoEncontrado = liga
                 .FirstOrDefault(e => e.NombreClub.Equals(nombre, StringComparison.OrdinalIgnoreCase));
             if (equipoEncontrado != null)
             {
-                Console.WriteLine("No se ha podido inscribir, el equipo '"+ nombre+"' ya juega en esta liga");
+                Console.WriteLine("No se ha podido inscribir, el equipo '" + nombre + "' ya juega en esta liga");
             }
             else
             {
                 Equipo e = new Equipo(nombre);
-                liga .Add(e);
+                liga.Add(e);
                 Console.WriteLine("El equipo '" + e.NombreClub + "' ha sido inscrito correctamente");
             }
         }
-    public String FormularioNuevoEquipo()
+        public String FormularioNuevoEquipo()
         {
             string nombre = " ";
             do
             {
-               Console.Write("Dime el nombre del equipo: ");
-               nombre = Console.ReadLine();
-                if(string.IsNullOrEmpty(nombre) || string.IsNullOrWhiteSpace(nombre))
+                Console.Write("Dime el nombre del equipo: ");
+                nombre = Console.ReadLine();
+                if (string.IsNullOrEmpty(nombre) || string.IsNullOrWhiteSpace(nombre))
                 {
                     Console.WriteLine("Nombre no valido, vuelva a introducirlo");
                 }
@@ -46,16 +46,16 @@ namespace PruebaGIT
             return nombre;
 
         }
-    public void MostrarNombresEquipos()
+        public void MostrarNombresEquipos()
         {
             foreach (var equipo in liga)
             {
                 Console.Write(equipo);
             }
         }
-    public void MostrarJugadoresDeEquipo(string nombreEquipo)
+        public void MostrarJugadoresDeEquipo(string nombreEquipo)
         {
-            
+
             Equipo equipoEncontrado = liga.FirstOrDefault(e =>
                 e.NombreClub.Equals(nombreEquipo, StringComparison.OrdinalIgnoreCase));
 
@@ -81,9 +81,9 @@ namespace PruebaGIT
                 }
             }
 
-                
+
         }
-    public void CrearJugador()
+        public void CrearJugador()
         {
             Jugador jugador = FormularioNuevoJugador();
 
@@ -176,7 +176,7 @@ namespace PruebaGIT
                                 nuevoJugador.Posicion,
                                 nuevoJugador.Nombre,
                                 nuevoJugador.Dorsal,
-                                equipoOriginal); 
+                                equipoOriginal);
 
                             equipoEncontrado.Jugadores[indice] = jugadorActualizado;
                         }
@@ -258,100 +258,53 @@ namespace PruebaGIT
 
             return new Jugador(posicion, nombre, dorsal, equipo);
         }
-    public void DatosDePrueba()
+        public void DatosDePrueba()
         {
-             Jugador ab = new Jugador(ePosicion.POR, "Unai Simon", 1, "Atletico de Bilbao");
-             Jugador ab1 = new Jugador(ePosicion.DEF, "Adama Boiro", 19, "Atletico de Bilbao");
-             Jugador ab2 = new Jugador(ePosicion.CEN, "Unai Gomez", 20, "Atletico de Bilbao");
-             Jugador ab3 = new Jugador(ePosicion.DEL, "Iñaki Williams", 9, "Atletico de Bilbao");
-             Jugador fcb = new Jugador(ePosicion.DEL, "Lamine Yamal", 10, "Barcelona");
-             Jugador fcb1 = new Jugador(ePosicion.CEN, "Pedri", 8, "Barcelona");
-             Jugador fcb2 = new Jugador(ePosicion.DEF, "Ronald Araujo", 4, "Barcelona");
-             Jugador fcb3 = new Jugador(ePosicion.DEF, "Eric Garcia", 24, "Barcelona");
-             Jugador rm = new Jugador(ePosicion.DEL, "Kylian Mbappe", 10, "Real Madrid");
-             Jugador rm1 = new Jugador(ePosicion.DEL, "Vinicius junior", 7, "Real Madrid");
-             Jugador rm2 = new Jugador(ePosicion.CEN, "Federico Valverde", 8, "Real Madrid");
-             Jugador rm3 = new Jugador(ePosicion.DEF, "Dani Carvajal", 2, "Real Madrid");
-             Jugador am = new Jugador(ePosicion.POR, "Jan Oblak", 13, "Atletico de Madrid");
-             Jugador am1 = new Jugador(ePosicion.DEF, "Laurent Lenglet", 15, "Atletico de Madrid");
-             Jugador am2 = new Jugador(ePosicion.CEN, "Marcos Llorente", 14, "Atletico de Madrid");
-             Jugador am3 = new Jugador(ePosicion.DEL, "Antoine Griezmann", 7, "Atletico de Madrid");
+            Jugador ab = new Jugador(ePosicion.POR, "Unai Simon", 1, "Atletico de Bilbao");
+            Jugador ab1 = new Jugador(ePosicion.DEF, "Adama Boiro", 19, "Atletico de Bilbao");
+            Jugador ab2 = new Jugador(ePosicion.CEN, "Unai Gomez", 20, "Atletico de Bilbao");
+            Jugador ab3 = new Jugador(ePosicion.DEL, "Iñaki Williams", 9, "Atletico de Bilbao");
+            Jugador fcb = new Jugador(ePosicion.DEL, "Lamine Yamal", 10, "Barcelona");
+            Jugador fcb1 = new Jugador(ePosicion.CEN, "Pedri", 8, "Barcelona");
+            Jugador fcb2 = new Jugador(ePosicion.DEF, "Ronald Araujo", 4, "Barcelona");
+            Jugador fcb3 = new Jugador(ePosicion.DEF, "Eric Garcia", 24, "Barcelona");
+            Jugador rm = new Jugador(ePosicion.DEL, "Kylian Mbappe", 10, "Real Madrid");
+            Jugador rm1 = new Jugador(ePosicion.DEL, "Vinicius junior", 7, "Real Madrid");
+            Jugador rm2 = new Jugador(ePosicion.CEN, "Federico Valverde", 8, "Real Madrid");
+            Jugador rm3 = new Jugador(ePosicion.DEF, "Dani Carvajal", 2, "Real Madrid");
+            Jugador am = new Jugador(ePosicion.POR, "Jan Oblak", 13, "Atletico de Madrid");
+            Jugador am1 = new Jugador(ePosicion.DEF, "Laurent Lenglet", 15, "Atletico de Madrid");
+            Jugador am2 = new Jugador(ePosicion.CEN, "Marcos Llorente", 14, "Atletico de Madrid");
+            Jugador am3 = new Jugador(ePosicion.DEL, "Antoine Griezmann", 7, "Atletico de Madrid");
             // Crear un equipo
-             Equipo AtleticoBilbao = new Equipo("Atletico de Bilbao");
-             Equipo Barcelona = new Equipo("Barcelona");
-             Equipo RealMadrid = new Equipo("Real Madrid");
-             Equipo AtleticoMadrid  = new Equipo("Atletico de Madrid");
-             liga.Add(Barcelona);
-             liga.Add(RealMadrid);
-             liga.Add(AtleticoMadrid);
-             liga.Add(AtleticoBilbao);   
+            Equipo AtleticoBilbao = new Equipo("Atletico de Bilbao");
+            Equipo Barcelona = new Equipo("Barcelona");
+            Equipo RealMadrid = new Equipo("Real Madrid");
+            Equipo AtleticoMadrid = new Equipo("Atletico de Madrid");
+            liga.Add(Barcelona);
+            liga.Add(RealMadrid);
+            liga.Add(AtleticoMadrid);
+            liga.Add(AtleticoBilbao);
 
-             AtleticoBilbao.AgregarJugador(ab);
-             AtleticoBilbao.AgregarJugador(ab1);
-             AtleticoBilbao.AgregarJugador(ab2);
-             AtleticoBilbao.AgregarJugador(ab3);
+            AtleticoBilbao.AgregarJugador(ab);
+            AtleticoBilbao.AgregarJugador(ab1);
+            AtleticoBilbao.AgregarJugador(ab2);
+            AtleticoBilbao.AgregarJugador(ab3);
 
-             AtleticoMadrid.AgregarJugador(am);
-             AtleticoMadrid.AgregarJugador(am1);
-             AtleticoMadrid.AgregarJugador(am2);
-             AtleticoMadrid.AgregarJugador(am3);
+            AtleticoMadrid.AgregarJugador(am);
+            AtleticoMadrid.AgregarJugador(am1);
+            AtleticoMadrid.AgregarJugador(am2);
+            AtleticoMadrid.AgregarJugador(am3);
 
-             Barcelona.AgregarJugador(fcb);
-             Barcelona.AgregarJugador(fcb1);
-             Barcelona.AgregarJugador(fcb2);
-             Barcelona.AgregarJugador(fcb3);
+            Barcelona.AgregarJugador(fcb);
+            Barcelona.AgregarJugador(fcb1);
+            Barcelona.AgregarJugador(fcb2);
+            Barcelona.AgregarJugador(fcb3);
 
-             RealMadrid.AgregarJugador(rm);
-             RealMadrid.AgregarJugador(rm1);
-             RealMadrid.AgregarJugador(rm2);
-             RealMadrid.AgregarJugador(rm3);
+            RealMadrid.AgregarJugador(rm);
+            RealMadrid.AgregarJugador(rm1);
+            RealMadrid.AgregarJugador(rm2);
+            RealMadrid.AgregarJugador(rm3);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-    }
-
+}
